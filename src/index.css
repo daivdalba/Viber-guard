@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+:root {
+    --color-1: #4a4c51;
+    --white: #ffffff;
+}
+.popup-container {
+    min-width: 400px;
+}
+.header {
+    width: 100%;
+}
+.connect-btn {
+    background-color: var(--color-1);
+    color: var(--white);
+    line-height: 18px;
+}
