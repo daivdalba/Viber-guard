@@ -5,6 +5,7 @@ import Header from '../app-dashboard/Header';
 import Footer from '../app-dashboard/Footer';
 import SimulationResult from './SimulationResult';
 import SimulationTransaction from './SimulationTransaction';
+import SimulationWarning from './SimulationWarning';
 
 export interface OverviewProps {
 //   warningType: SimulationWarningType;
@@ -15,12 +16,16 @@ export interface OverviewProps {
 const SimulationPopup = (props: OverviewProps) => {
     return (
     <>
-        <div className='container popup-container'>
-            <Header />
+        {/* <div className='container popup-container'>
+            <Header /> */}
             {/* <SimulationResult /> */}
-            <SimulationTransaction />
+            {/* <SimulationTransaction />
         </div>
-        <Footer />
+        <Footer /> */}
+        <div className='container lg-popup-container'>
+            <Header />
+            <SimulationWarning />
+        </div>
     </>
   );
 };

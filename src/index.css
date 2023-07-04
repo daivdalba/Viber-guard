@@ -36,6 +36,11 @@
     color: var(--white);
     font-family: 'Avenir';
 }
+.lg-popup-container {
+    min-width: 750px;
+    min-height: 800px;
+    color: var(--white);
+}
 .header {
     width: 100%;
 }
@@ -107,6 +112,7 @@
 }
 .title-font {
     font-size: 17px;
+    line-height: 140%;
     font-weight: 700;
     font-family: 'SF Pro Text';
 }
@@ -114,6 +120,12 @@
     font-size: 10px;
     font-family: 'Avenir';
     font-weight: 400;
+}
+.large-font {
+    font-size: 40px;
+    line-height: 140%;
+    letter-spacing: -0.16px;
+    font-weight: 800;
 }
 .color-warning {
     color: var(--color-3);
@@ -145,6 +157,18 @@
     color: var(--color-5);
     background: var(--white);
 }
+.lg-popup-container .btn-reject, .lg-popup-container .btn-continue {
+    width: 260px;
+}
+.lg-popup-container .btn-reject {
+    border: 1px solid var(--white);
+    color: var(--white);
+    margin-right: 40px;
+}
+.lg-popup-container .btn-continue {
+    background: var(--color-6);
+    color: var(--color-5);
+}
 .footer .btn {
     border-radius: 5px;
     width: 170px;
@@ -169,4 +193,18 @@ svg.i-verified path {
 }
 svg.i-success path {
     fill: var(--color-7);
+}
+
+.full-content {
+    padding-left: 50px;
+    padding-right: 50px;
+}
+.mt--70 {
+    margin-top: 70px;
+}
+.mt--40 {
+    margin-top: 40px;
+}
+.mt--84 {
+    margin-top: 84px;
 }
