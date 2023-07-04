@@ -45,7 +45,7 @@ const SimulationWarning = (props: OverviewProps) => {
                 <img src='/images/asset_logos/logo.png' className='inline-block' alt='logo' />
                 <div className='inline-block'>
                     <div className='title'>VIBRANIUM SHIELD A.I</div>
-                    <div className='author'>Phishing Protection</div>
+                    <div className='protection'>Phishing Protection</div>
                 </div>
             </div>
         </div>

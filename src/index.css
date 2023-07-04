@@ -208,3 +208,15 @@ svg.i-success path {
 .mt--84 {
     margin-top: 84px;
 }
+.lg-popup-container input[type="checkbox"] {
+    width: 24px;
+    height: 24px;
+}
+.lg-popup-container a {
+    text-decoration: underline;
+}
+.protection {
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 1.4px;
+}
