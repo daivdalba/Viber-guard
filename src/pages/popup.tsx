@@ -9,6 +9,7 @@ import { SimulationOverview } from '../components/simulation/SimulationOverview'
 import { TransactionContent } from '../components/simulation/TransactionContent';
 import type { StoredSimulation } from '../lib/simulation/storage';
 import { StoredSimulationState } from '../lib/simulation/storage';
+import '../index.css'
 import { ErrorType, SimulationMethodType, SimulationWarningType } from '../models/simulation/Transaction';
 import * as Sentry from '@sentry/react';
 import { BrowserTracing } from '@sentry/tracing';
@@ -18,6 +19,7 @@ import { SimulationSurvey } from '../components/simulation/SimulationSurvey';
 import { WgKeys } from '../lib/helpers/chrome/localStorageKeys';
 import { PersonalSign } from '../components/simulation/PersonalSign';
 import localStorageHelpers from '../lib/helpers/chrome/localStorage';
+import SimulationPopup from '../components/simulation/SimulationPopup';
 
 const Popup = () => {
   const [currentSimulation, setCurrentSimulation] = useState<StoredSimulation>();
@@ -96,71 +98,10 @@ const Popup = () => {
   if (loading) {
     return <div style={{ backgroundColor: 'black' }} />;
   }
-
-  if (!currentSimulation) {
-    return <NoSimulation />;
-  }
-
-  if (currentSimulation.simulation?.error || currentSimulation.error) {
-    return (
-      <ErrorComponent
-        currentSimulation={currentSimulation}
-        type={currentSimulation.simulation?.error?.type || currentSimulation.error?.type || ErrorType.GeneralError}
-      />
-    );
-  }
-
-  // Personal Sign Screen
-  if (currentSimulation.args.method === SimulationMethodType.PersonalSign) {
-    return (
-      <>
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <PersonalSign simulation={currentSimulation} />
-        </div>
-        <ConfirmSimulationButton storedSimulation={currentSimulation} />
-      </>
-    );
-  }
-
   return (
-    <>
-      <div style={{ backgroundColor: 'black' }}>
-        <SimulationHeader />
-      </div>
-      {showSurvey && <SimulationSurvey />}
-
-      <div>
-        {((currentSimulation.state === StoredSimulationState.Success &&
-          currentSimulation.simulation?.warningType === SimulationWarningType.Warn) ||
-          currentSimulation.simulation?.warningType === SimulationWarningType.Info ||
-          currentSimulation.simulation?.error) && (
-          <div>
-            <SimulationOverview
-              warningType={currentSimulation.simulation.warningType}
-              message={currentSimulation.simulation.message || []}
-              method={currentSimulation.simulation.method}
-            />
-          </div>
-        )}
-      </div>
-
-      {currentSimulation.state === StoredSimulationState.Success && (
-        <div className="pt-4">
-          <ContractDetails storedSimulation={currentSimulation} />
-        </div>
-      )}
-
-      <div className="pb-4">
-        <TransactionContent storedSimulation={currentSimulation} />
-      </div>
-      <div style={{ height: '120px' }} />
-      {currentSimulation.args?.bypassed ? (
-        <BypassedSimulationButton storedSimulation={currentSimulation} />
-      ) : (
-        <ConfirmSimulationButton storedSimulation={currentSimulation} />
-      )}
-    </>
+    <SimulationPopup />
   );
+
 };
 
 const container = document.getElementById('root');

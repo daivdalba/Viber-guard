@@ -1,0 +1,158 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+:root {
+    --color-1: #4a4c51;
+    --white: #ffffff;
+    --color-2: #8B13E6;
+    --color-3: #F07054;
+    --color-4: #848BA4;
+    --color-5: #1D1F26;
+    --color-6: #73F74B;
+    --color-7: #13C0E6;
+}
+
+@font-face {
+    font-family: 'Avenir';
+    src: url('/public/AvenirLTStd-Book.otf');
+}
+
+.fonttest {
+    font-family: 'Avenir';
+}
+
+@font-face {
+    font-family: 'SF-Pro-Text';
+    src: url('/public/SF-Pro-Text-Black.otf');
+}
+
+.fonttest {
+    font-family: 'SF-Pro-Text';
+}
+
+.popup-container {
+    min-width: 400px;
+    min-height: 800px;
+    color: var(--white);
+    font-family: 'Avenir';
+}
+.header {
+    width: 100%;
+}
+.connect-btn {
+    background-color: var(--color-1);
+    color: var(--white);
+    line-height: 18px;
+}
+.title {
+    color: var(--color-2);
+    font-size: 14px;
+    line-height: 19px;
+    font-weight: 400;
+}
+.author {
+    font-size: 10px;
+    line-height: 14px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+.warning-container {
+    background: var(--color-3);
+    border-radius: 10px;
+    padding: 20px;
+}
+.warning-header {
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 20px;
+}
+.warning-header>svg {
+    display: inline-block;
+    margin-right: 10px;
+}
+.warning-content {
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 400;
+}
+.vibranium-subtitle {
+    margin-top: 30px;
+    font-size: 17px;
+    font-weight: 700;
+}
+.vibranium-subdescription {
+    color: var(--color-4);
+    font-size: 13px;
+    margin-top: 10px;
+    font-weight: 800;
+    line-height: 140%;
+    letter-spacing: -0.052px;
+}
+.vibranium-subdescription-content {
+    font-size: 13px;
+    margin-top: 10px;
+    font-weight: 400;
+    line-height: 140%;
+    letter-spacing: -0.052px;
+}
+.main-font {
+    font-size: 13px;
+    line-height: 140%;
+    letter-spacing: -0.052px;
+}
+.title-font {
+    font-size: 17px;
+    font-weight: 700;
+    font-family: 'SF Pro Text';
+}
+.color-warning {
+    color: var(--color-3);
+}
+.color-success {
+    color: var(--color-6);
+}
+.color-verified {
+    color: var(--color-2);
+}
+.color-info {
+    color: var(--color-4);
+}
+.vibranium-detail-container {
+    margin-top: 10px;
+    border-radius: 10px;
+    border: 0.4px solid #848BA4;
+    padding: 20px;
+}
+.btn-reject {
+    border: 1px solid var(--white);
+    color: var(--white);
+}
+.btn-continue {
+    color: var(--color-5);
+    background: var(--white);
+}
+.footer .btn {
+    border-radius: 5px;
+    width: 170px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.w-100 {
+    width: 100%;
+}
+
+/* start success */
+.success-container {
+    background: var(--color-6);
+    padding: 30px 20px;
+    border-radius: 10px;
+}
+/* end success */
+
+svg.i-verified path {
+    fill: var(--color-2);
+}
+svg.i-success path {
+    fill: var(--color-7);
+}
