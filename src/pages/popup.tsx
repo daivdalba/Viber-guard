@@ -19,7 +19,7 @@ import { SimulationSurvey } from '../components/simulation/SimulationSurvey';
 import { WgKeys } from '../lib/helpers/chrome/localStorageKeys';
 import { PersonalSign } from '../components/simulation/PersonalSign';
 import localStorageHelpers from '../lib/helpers/chrome/localStorage';
-import SimulationResult from '../components/simulation/SimulationResult';
+import SimulationPopup from '../components/simulation/SimulationPopup';
 
 const Popup = () => {
   const [currentSimulation, setCurrentSimulation] = useState<StoredSimulation>();
@@ -99,7 +99,7 @@ const Popup = () => {
     return <div style={{ backgroundColor: 'black' }} />;
   }
   return (
-    <SimulationResult />
+    <SimulationPopup />
   );
 
 };
