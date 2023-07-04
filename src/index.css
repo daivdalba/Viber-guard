@@ -9,6 +9,7 @@
     --color-4: #848BA4;
     --color-5: #1D1F26;
     --color-6: #73F74B;
+    --color-7: #13C0E6;
 }
 
 @font-face {
@@ -18,6 +19,15 @@
 
 .fonttest {
     font-family: 'Avenir';
+}
+
+@font-face {
+    font-family: 'SF-Pro-Text';
+    src: url('/public/SF-Pro-Text-Black.otf');
+}
+
+.fonttest {
+    font-family: 'SF-Pro-Text';
 }
 
 .popup-container {
@@ -101,6 +111,12 @@
 .color-success {
     color: var(--color-6);
 }
+.color-verified {
+    color: var(--color-2);
+}
+.color-info {
+    color: var(--color-4);
+}
 .vibranium-detail-container {
     margin-top: 10px;
     border-radius: 10px;
@@ -133,3 +149,10 @@
     border-radius: 10px;
 }
 /* end success */
+
+svg.i-verified path {
+    fill: var(--color-2);
+}
+svg.i-success path {
+    fill: var(--color-7);
+}

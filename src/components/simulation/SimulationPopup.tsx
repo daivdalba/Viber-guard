@@ -4,6 +4,7 @@ import styles from './simulation.module.css';
 import Header from '../app-dashboard/Header';
 import Footer from '../app-dashboard/Footer';
 import SimulationResult from './SimulationResult';
+import SimulationTransaction from './SimulationTransaction';
 
 export interface OverviewProps {
 //   warningType: SimulationWarningType;
@@ -16,7 +17,8 @@ const SimulationPopup = (props: OverviewProps) => {
     <>
         <div className='container popup-container'>
             <Header />
-            <SimulationResult />
+            {/* <SimulationResult /> */}
+            <SimulationTransaction />
         </div>
         <Footer />
     </>
