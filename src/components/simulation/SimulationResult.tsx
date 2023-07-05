@@ -29,7 +29,7 @@ const SimulationResult = (props: OverviewProps) => {
             </div>
             }
             <div className='vibranium-subtitle'>Signature Details</div>
-            <div className='vibranium-subdescription'>Website</div>
+            <div className='vibranium-subdescription mt-2'>Website</div>
             <div className='flex justify-between items-center vibranium-subdescription-content'>
             {error?
             <>

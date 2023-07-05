@@ -9,7 +9,7 @@ export default function Header() {
                 <div className='author'>SHIELD A.I</div>
             </div>
         </div>
-        <button type='button' className='btn connect-btn' >connect</button>
+        <button type='button' className='btn connect-btn small-font' >Connect</button>
     </div>
     )
 }

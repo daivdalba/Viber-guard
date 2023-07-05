@@ -12,7 +12,6 @@
     "open_in_tab": true
   },
   "action": {
-    "default_popup": "popup.html"
   },
   "content_scripts": [
     {
@@ -31,6 +30,6 @@
   "background": {
     "service_worker": "js/background.js"
   },
-  "permissions": ["activeTab", "storage", "tabs", "alarms", "management", "notifications"],
+  "permissions": ["storage", "tabs", "alarms", "management", "notifications"],
   "host_permissions": ["<all_urls>"]
 }

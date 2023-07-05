@@ -32,9 +32,15 @@
 
 .popup-container {
     min-width: 400px;
-    min-height: 800px;
+    height: 599px;
     color: var(--white);
     font-family: 'Avenir';
+}
+.lg-popup-container {
+    min-width: 750px;
+    width: 799px;
+    height: 599px;
+    color: var(--white);
 }
 .header {
     width: 100%;
@@ -43,6 +49,11 @@
     background-color: var(--color-1);
     color: var(--white);
     line-height: 18px;
+}
+.bg-secondary {
+    background-color: var(--color-1);
+    color: var(--white);
+    border-radius: 4px;
 }
 .title {
     color: var(--color-2);
@@ -102,8 +113,20 @@
 }
 .title-font {
     font-size: 17px;
+    line-height: 140%;
     font-weight: 700;
     font-family: 'SF Pro Text';
+}
+.small-font {
+    font-size: 10px;
+    font-family: 'Avenir';
+    font-weight: 400;
+}
+.large-font {
+    font-size: 40px;
+    line-height: 140%;
+    letter-spacing: -0.16px;
+    font-weight: 800;
 }
 .color-warning {
     color: var(--color-3);
@@ -123,6 +146,10 @@
     border: 0.4px solid #848BA4;
     padding: 20px;
 }
+.vibranium-detail-image {
+    background: var(--white);
+    border-radius: 4px;
+}
 .btn-reject {
     border: 1px solid var(--white);
     color: var(--white);
@@ -130,6 +157,18 @@
 .btn-continue {
     color: var(--color-5);
     background: var(--white);
+}
+.lg-popup-container .btn-reject, .lg-popup-container .btn-continue {
+    width: 260px;
+}
+.lg-popup-container .btn-reject {
+    border: 1px solid var(--white);
+    color: var(--white);
+    margin-right: 40px;
+}
+.lg-popup-container .btn-continue {
+    background: var(--color-6);
+    color: var(--color-5);
 }
 .footer .btn {
     border-radius: 5px;
@@ -155,4 +194,30 @@ svg.i-verified path {
 }
 svg.i-success path {
     fill: var(--color-7);
+}
+
+.full-content {
+    padding-left: 50px;
+    padding-right: 50px;
+}
+.mt--70 {
+    margin-top: 70px;
+}
+.mt--40 {
+    margin-top: 40px;
+}
+.mt--84 {
+    margin-top: 84px;
+}
+.lg-popup-container input[type="checkbox"] {
+    width: 24px;
+    height: 24px;
+}
+.lg-popup-container a {
+    text-decoration: underline;
+}
+.protection {
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 1.4px;
 }
