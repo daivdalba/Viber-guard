@@ -8,26 +8,39 @@ import { AlertDetail } from '../../models/Alert';
 import { PhishingResult, WarningLevel, WarningType } from '../../models/PhishingResponse';
 import { domainScan } from '../http/domainScan';
 import { posthog } from 'posthog-js';
+import { useState, useEffect } from 'react';
 
 export async function checkUrlForPhishing(tab: chrome.tabs.Tab) {
+  console.log('step 6')
   const url: string = tab.url || '';
+  console.log('step 7', url)
   // do not do a check if we are already on this page
   if (urlIsPhishingWarning(url)) return;
-
+console.log('step 8')
   const domainName = getDomainNameFromURL(url);
   const personalWhitelist = await localStorageHelpers.get<string[]>(WgKeys.PersonalWhitelist);
   // do not scan if domain is on personal whitelist
   if (personalWhitelist?.includes(domainName)) return;
-
+console.log('step 9', WgKeys.PersonalWhitelist)
   // do not scan if domain is browser native page
   if (hasBrowserPrefix(url)) return;
 
-  const pdsResponse = await domainScan(url);
-  chrome.storage.local.set({ currentSite: pdsResponse });
-
+  const response = await domainScan(url);
+  chrome.storage.local.set({ currentSite: response });
+console.log('step 10', response)
+  const pdsResponse = {...response, phishing: "PHISHING", warnings: [
+    {
+      type: 'RECENTLY_CREATED',
+      level: 'CRITICAL',
+      value: '20',
+    }
+  ]}
   if (pdsResponse?.phishing === PhishingResult.Phishing) {
+    console.log('step 11', pdsResponse?.phishing, PhishingResult.Phishing)
     const recentlyCreatedWarning = pdsResponse.warnings?.find(warning => warning.type === WarningType.RecentlyCreated);
+    console.log(recentlyCreatedWarning)
     if (recentlyCreatedWarning) {
+      console.log('step 12', recentlyCreatedWarning)
       const daysSinceCreated = Math.round(parseFloat(recentlyCreatedWarning.value) / 24);
 
       if (recentlyCreatedWarning.level === WarningLevel.Critical) {
@@ -50,7 +63,7 @@ export async function checkUrlForPhishing(tab: chrome.tabs.Tab) {
         });
       }
     }
-
+console.log('step 13', '-------')
     const drainerWarning = pdsResponse.warnings?.find(warning => warning.type === WarningType.Drainer);
     const similarityWarning = pdsResponse.warnings?.find(warning => warning.type === WarningType.Similarity);
     const homoglyphWarning = pdsResponse.warnings?.find(warning => warning.type === WarningType.Homoglyph);

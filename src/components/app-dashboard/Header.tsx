@@ -1,5 +1,10 @@
 import React from 'react';
-export default function Header() {
+
+export interface ChildProps {
+    isPhish: boolean;
+}
+
+const Header: React.FC<ChildProps> =  ({ isPhish }) => {
     return (
         <div className='header flex justify-between items-center'>
         <div className='flex items-center'>
@@ -9,7 +14,14 @@ export default function Header() {
                 <div className='author'>SHIELD A.I</div>
             </div>
         </div>
-        <button type='button' className='btn connect-btn small-font' >Connect</button>
+        {
+            isPhish ? 
+            <button type='button' className='btn connect-btn small-font' >Connect</button>
+            :
+            ''
+        }
     </div>
     )
 }
+
+export default Header;

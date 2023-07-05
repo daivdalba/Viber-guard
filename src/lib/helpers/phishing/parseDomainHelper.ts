@@ -14,9 +14,12 @@ export function domainHasChanged(
   currentSite: PhishingResponse
 ): boolean {
   const domainObj = parseDomain(standardizeUrl(url));
+  console.log('step 3-1', domainObj)
+  console.log('step 3-2', domainObj.type !== ParseResultType.Listed)
   if (domainObj.type !== ParseResultType.Listed) return true;
 
   const domainName = createDomainName(domainObj);
+  console.log('step 3-3', domainName, currentSite.domainName)
 
   return domainName !== currentSite.domainName;
 }

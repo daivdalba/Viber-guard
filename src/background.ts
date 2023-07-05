@@ -27,16 +27,16 @@ Sentry.init({
 });
 
 // Open Dashboard or Simulation Popup on toolbar click
-chrome.action.onClicked.addListener(function (tab) {
-  // Open the current simulation popup if one exists
-  if (currentPopup && currentPopup !== -1) {
-    chrome.windows.update(currentPopup, {
-      focused: true,
-    });
-  } else {
-    openDashboard('toolbar');
-  }
-});
+// chrome.action.onClicked.addListener(function (tab) {
+//   // Open the current simulation popup if one exists
+//   if (currentPopup && currentPopup !== -1) {
+//     chrome.windows.update(currentPopup, {
+//       focused: true,
+//     });
+//   } else {
+//     openDashboard('toolbar');
+//   }
+// });
 
 // MESSAGING
 chrome.runtime.onMessage.addListener((message: BrowserMessage, sender, sendResponse) => {
@@ -96,12 +96,28 @@ chrome.management.onInstalled.addListener(async (extensionInfo) => {
 
 // PHISHING DETECTION
 chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
+  console.log('step 1', changeInfo)
   // some sites like exocharts trigger onUpdated events, but the url hasn't changed causing excessive function calls
-  if (changeInfo?.url === undefined) return;
+  if (changeInfo?.url === undefined) {
+    // chrome.windows
+    // .create({
+    //   url: 'popup.html',
+    //   type: 'popup',
+    //   width: 420,
+    //   height: 840,
+    // })
+    // .then((createdWindow) => {
+    //   currentPopup = createdWindow?.id;
+    //   return;
+    // });
+    return;
+  }
 
   const currentSite = await getCurrentSite();
+  console.log('step 2', currentSite)
 
   if (domainHasChanged(changeInfo.url, currentSite)) {
+    console.log('step 3', changeInfo.url, currentSite)
     await checkUrlForPhishing(tab);
   }
 });
@@ -162,7 +178,7 @@ chrome.windows.onRemoved.addListener((windowId: number) => {
 });
 
 chrome.storage.onChanged.addListener((changes, area) => {
-  console.log('found localStorage changes');
+  console.log('found localStorage changes', changes, area);
   if (area === 'local' && changes['simulations']?.newValue) {
     const oldSimulations = changes['simulations'].oldValue;
     const newSimulations = changes['simulations'].newValue;
@@ -173,8 +189,6 @@ chrome.storage.onChanged.addListener((changes, area) => {
     const newFiltered = newSimulations.filter((storedSimulation: StoredSimulation) => {
       return simulationNeedsAction(storedSimulation.state);
     });
-
-    console.log('preparing to open popup');
 
     log.debug(
       {

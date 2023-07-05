@@ -29,6 +29,9 @@ import { WarningType } from '../models/PhishingResponse';
 import styles from '../styles.module.css';
 import * as Sentry from '@sentry/react';
 import { BrowserTracing } from '@sentry/tracing';
+import '../index.css'
+import Header from '../components/app-dashboard/Header';
+import SimulationWarning from '../components/simulation/SimulationWarning';
 
 export function PhishingWarning() {
   const [isFalsePositive, setIsFalsePositive] = useState(false);
@@ -86,6 +89,18 @@ export function PhishingWarning() {
     );
   }
 
+  console.log({
+    isConfirmedPhishing: isConfirmedPhishing,
+    proceedAnywayUrl: proceedAnywayUrl,
+    reason: reason,
+    WarningTypeDrainer: WarningType.Drainer,
+    WarningTypeRecentlyCreated: WarningType.RecentlyCreated,
+    WarningTypeHomoglyph: WarningType.Homoglyph,
+    queryParams: queryParams,
+    safeUrl: safeUrl,
+    WarningTypeMalware: WarningType.Malware,
+  })
+
   function getWarningText() {
     if (isConfirmedPhishing) {
       return (
@@ -104,17 +119,6 @@ export function PhishingWarning() {
           </Text>
         </>
       );
-    } else if (reason === WarningType.RecentlyCreated) {
-      return (
-        <>
-          <Text variant={'muted'} fontSize={'lg'}>
-            The website ({proceedAnywayUrl}) you're trying to visit might be a phishing attempt.
-          </Text>
-          <Text variant={'muted'} fontSize={'lg'}>
-            <strong>It was recently created and has low trust.</strong> If you proceed, please use caution.
-          </Text>
-        </>
-      );
     } else if (reason === WarningType.Homoglyph) {
       return (
         <>
@@ -127,11 +131,11 @@ export function PhishingWarning() {
                 </div>
               </Tooltip>{' '}
             </strong>
-            you're trying to visit contains punycode and is likely a phishing attempt.
+            you're trying to visit might be phishing attempt.
           </Text>
 
           <Text variant={'muted'} fontSize={'lg'}>
-            There's a strong chance this website is trying to impersonate <strong>{safeUrl}</strong>
+            We think you might be looking for <strong>{safeUrl}</strong>
           </Text>
         </>
       );
@@ -165,35 +169,41 @@ export function PhishingWarning() {
   }
 
   return (
-    <div style={{ background: 'black' }}>
-      <div className={styles.center}>
+    <div className='container mx-auto'>
+      <Header isPhish={false}/>
+      {/* <SimulationWarning /> */}
+      <div className={styles.center} style={{height: '85vh'}}>
         <VStack spacing={'4'} alignItems="flex-start">
-          <WarningTwoIcon
-            boxSize={'100px'}
+          <svg 
+            xmlns="http://www.w3.org/2000/svg" 
+            width="100" 
+            height="100" 
+            viewBox="0 0 100 100" 
+            fill="none" 
             color={reason === WarningType.RecentlyCreated ? 'yellow.400' : 'red.400'}
-            mr={3}
-          />
+            className='mr-3'
+          >
+              <g id="triangle-warning-2 1" clipPath="url(#clip0_24_160)">
+              <path id="Vector" d="M56.25 43.75V64.5833C56.25 68.0416 53.4583 70.8333 50 70.8333C46.5417 70.8333 43.75 68.0416 43.75 64.5833V43.75C43.75 40.2916 46.5417 37.5 50 37.5C53.4583 37.5 56.25 40.2916 56.25 43.75ZM50 79.1666C46.5417 79.1666 43.75 81.9583 43.75 85.4166C43.75 88.875 46.5417 91.6666 50 91.6666C53.4583 91.6666 56.25 88.875 56.25 85.4166C56.25 81.9583 53.4583 79.1666 50 79.1666ZM96.0417 61.7083L63.7917 11.375C60.6667 6.87496 55.5 4.16663 50 4.16663C44.5 4.16663 39.3333 6.87496 36.0833 11.5833L4.12499 61.5C-0.416673 68 -1.25001 75.875 1.95833 82C5.16666 88.1666 11.7083 91.6666 19.9583 91.6666H27.125C30.5833 91.6666 33.375 88.875 33.375 85.4166C33.375 81.9583 30.5833 79.1666 27.125 79.1666H19.9583C17.9583 79.1666 14.4167 78.7916 13.0417 76.2083C12 74.2083 12.5 71.3333 14.5 68.4166L46.4583 18.5C47.625 16.8333 49.3333 16.6666 50 16.6666C50.6667 16.6666 52.375 16.8333 53.4167 18.2916L85.6667 68.625C87.5417 71.2916 88.0417 74.2083 87 76.2083C85.6667 78.7916 82.0833 79.1666 80.0833 79.1666H72.9167C69.4583 79.1666 66.6667 81.9583 66.6667 85.4166C66.6667 88.875 69.4583 91.6666 72.9167 91.6666H80.0833C88.2917 91.6666 94.875 88.125 98.0833 82C101.292 75.875 100.458 68 96.0833 61.7083H96.0417Z" fill="#F07054"/>
+              </g>
+              <defs>
+              <clipPath id="clip0_24_160">
+              <rect width="100" height="100" fill="white"/>
+              </clipPath>
+              </defs>
+          </svg>
           <Heading as="h4">This website might be harmful</Heading>
           {warningText}
 
           <Stack pt="80px" direction="row" spacing="6">
+            <Button variant="link" className='vibra-btn btn-reject flex items-center justify-center' onClick={openProceedAnyway}>
+              Proceed Anyway
+            </Button>
             {safeUrl !== 'null' && (
-              <Button onClick={openSafeLink} variant="primary" rightIcon={<CheckIcon />}>
+              <Button onClick={openSafeLink} className='connect-btn' variant="primary" rightIcon={<CheckIcon />}>
                 <Link>Go to {safeUrl}</Link>
               </Button>
             )}
-            {safeUrl === 'null' && (
-              <Button
-                onClick={() => openDashboard('phishing_page_my_dashboard', true)}
-                variant="primary"
-                rightIcon={<CheckIcon />}
-              >
-                My Dashboard
-              </Button>
-            )}
-            <Button variant="link" onClick={openProceedAnyway}>
-              Proceed Anyway
-            </Button>
           </Stack>
           <Tooltip
             variant={'default'}
@@ -202,27 +212,19 @@ export function PhishingWarning() {
               checking this box."
             placement="bottom-end"
           >
-            <Box pl={'10px'}>
+            <Box>
               <Checkbox colorScheme="green" onChange={handleFalsePositiveCheckbox} pt="10px">
                 Click here to let us know if this is a false positive
               </Checkbox>
             </Box>
           </Tooltip>
-          <div style={{ paddingLeft: '10px' }}>
-            <TwitterShareButton
-              url={'https://walletguard.app'}
-              title={
-                'Vibranium Shield just protected me from a phishing attack! This is a reminder to always stay security conscious when clicking on links. Check them out at'
-              }
-              via={'wallet_guard'}
-            >
-              <a style={{ color: 'white' }}>
-                <FontAwesomeIcon icon={faTwitter} size="lg" style={{ marginRight: '10px' }} />
-                <b> If you found this helpful, click this to share on twitter! </b>
-              </a>
-            </TwitterShareButton>
+          <div className='flex items-center mt-20'>
+            <img src='/images/asset_logos/logo.png' className='inline-block' alt='logo' />
+            <div className='inline-block'>
+                <div className='title'>VIBRANIUM SHIELD A.I</div>
+                <div className='protection'>Phishing Protection</div>
+            </div>
           </div>
-          <Image pt={'100px'} src={logoSrc} />
         </VStack>
       </div>
     </div>

@@ -17,7 +17,7 @@ const SimulationLoading = (props: OverviewProps) => {
     return (
     <>
         <div className='container popup-container'>
-            <Header />
+            <Header isPhish={true}/>
             <div className='content main-font'>
                 {error ?
                 <div className='warning-container'>
@@ -56,7 +56,7 @@ const SimulationLoading = (props: OverviewProps) => {
                 </div>
                 <div className='vibranium-subtitle'>Signature Details</div>
                 <div className='vibranium-detail-container flex items-center'>
-                    <img src='/images/extra/image.png' alt='' />
+                    <img src='/images/image/image.png' alt='' />
                     <div className='main-font ml-2'>
                         <div className='font-extrabold'>
                             MURI(9753)
@@ -69,7 +69,6 @@ const SimulationLoading = (props: OverviewProps) => {
                 </div>
             </div>
         </div>
-        <Footer />
     </>
   );
 };
