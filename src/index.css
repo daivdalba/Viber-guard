@@ -30,6 +30,11 @@
     font-family: 'SF-Pro-Text';
 }
 
+.vibra-btn {
+    width: 260px;
+    height: 40px !important;
+}
+
 .popup-container {
     min-width: 400px;
     height: 599px;
@@ -44,6 +49,10 @@
 }
 .header {
     width: 100%;
+}
+.chakra-checkbox span:first-child {
+    width: 24px;
+    height: 24px;
 }
 .connect-btn {
     background-color: var(--color-1);

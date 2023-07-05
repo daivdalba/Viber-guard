@@ -8,6 +8,7 @@ import SimulationTransaction from './SimulationTransaction';
 import SimulationWarning from './SimulationWarning';
 
 export interface OverviewProps {
+    // isPhish: boolean;
 //   warningType: SimulationWarningType;
 //   message: string[];
 //   method?: SimulationMethodType | string;
@@ -23,7 +24,7 @@ const SimulationPopup = (props: OverviewProps) => {
         </div>
         <Footer /> */}
         <div className='container lg-popup-container'>
-            <Header />
+            <Header isPhish={false}/>
             <SimulationWarning />
         </div>
     </>

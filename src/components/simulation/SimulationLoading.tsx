@@ -17,7 +17,7 @@ const SimulationLoading = (props: OverviewProps) => {
     return (
     <>
         <div className='container popup-container'>
-            <Header />
+            <Header isPhish={true}/>
             <div className='content main-font'>
                 {error ?
                 <div className='warning-container'>
