@@ -169,10 +169,10 @@ export function PhishingWarning() {
   }
 
   return (
-    <div className='container'>
+    <div className='container mx-auto'>
       <Header isPhish={false}/>
       {/* <SimulationWarning /> */}
-      <div className={styles.center}>
+      <div className={styles.center} style={{height: '85vh'}}>
         <VStack spacing={'4'} alignItems="flex-start">
           <svg 
             xmlns="http://www.w3.org/2000/svg" 
