@@ -96,20 +96,19 @@ chrome.management.onInstalled.addListener(async (extensionInfo) => {
 
 // PHISHING DETECTION
 chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
-  console.log('step 1', changeInfo)
   // some sites like exocharts trigger onUpdated events, but the url hasn't changed causing excessive function calls
   if (changeInfo?.url === undefined) {
-    // chrome.windows
-    // .create({
-    //   url: 'popup.html',
-    //   type: 'popup',
-    //   width: 420,
-    //   height: 840,
-    // })
-    // .then((createdWindow) => {
-    //   currentPopup = createdWindow?.id;
-    //   return;
-    // });
+    chrome.windows
+    .create({
+      url: 'popup.html',
+      type: 'popup',
+      width: 420,
+      height: 840,
+    })
+    .then((createdWindow) => {
+      currentPopup = createdWindow?.id;
+      return;
+    });
     return;
   }
 
